@@ -278,6 +278,54 @@
     background: rgba(245,200,66,0.08);
   }
 
+  /* ── PACKAGE BUTTON ── */
+  .pkg-btn {
+    text-align: left;
+    padding: 16px 18px 14px;
+  }
+
+  .pkg-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+  }
+
+  .pkg-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .pkg-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(61,214,140,0.15);
+    color: var(--success);
+    text-transform: uppercase;
+  }
+
+  .pkg-tag--blue { background: rgba(92,160,252,0.15); color: #7ab8ff; }
+  .pkg-tag--purple { background: rgba(124,92,252,0.2); color: #b8a8ff; }
+  .pkg-tag--green { background: rgba(61,214,140,0.15); color: var(--success); }
+  .pkg-tag--gold { background: rgba(245,200,66,0.15); color: var(--gold); }
+
+  .pkg-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.4;
+  }
+
+  .pkg-btn small {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
   .custom-amount-wrap { display: none; }
   .custom-amount-wrap.show { display: block; animation: fadeUp 0.3s ease both; }
 
@@ -599,6 +647,124 @@
     transition: opacity 0.3s;
   }
 
+  /* ── PAY DIVIDER ── */
+  .pay-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  .pay-divider::before,
+  .pay-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .btn-telegram-main {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #2988d0, #1e6fa8);
+    border: none;
+    border-radius: 12px;
+    padding: 17px 24px;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px rgba(41,136,208,0.3);
+  }
+
+  .btn-telegram-main:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(41,136,208,0.4);
+  }
+
+  .btn-telegram-main:active { transform: scale(0.98); }
+
+  .btn-tg-disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    box-shadow: none;
+  }
+
+  .cta-note-tg {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    transition: opacity 0.3s;
+  }
+
+  /* ── TELEGRAM INFO CARD ── */
+  .tg-info-card {
+    margin-top: 16px;
+    background: linear-gradient(135deg, rgba(39,152,231,0.12), rgba(39,152,231,0.06));
+    border: 1px solid rgba(39,152,231,0.3);
+    border-radius: var(--radius);
+    padding: 20px;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .tg-info-icon {
+    font-size: 18px;
+    color: #5baaff;
+    margin-bottom: 10px;
+  }
+
+  .tg-info-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .tg-info-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .btn-telegram {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #2988d0, #1e6fa8);
+    border-radius: 10px;
+    padding: 13px 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(41,136,208,0.3);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-telegram:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(41,136,208,0.4);
+  }
+
+  .btn-telegram:active { transform: scale(0.98); }
+
   /* ── TOAST ── */
   .toast {
     position: fixed;
@@ -667,13 +833,34 @@
         </div>
       </div>
 
-      <p class="section-title">Pilih Jumlah Sumbangan</p>
+      <p class="section-title">Pilih Pakej Lifetime</p>
 
-      <div class="amount-grid">
-        <button class="amount-btn" onclick="selectAmount(15, this)">RM15<small>moga dimurahkan rezeki awak 🤲</small></button>
-        <button class="amount-btn" onclick="selectAmount(20, this)">RM20<small>semoga dipermudahkan urusan 🌿</small></button>
-        <button class="amount-btn" onclick="selectAmount(25, this)">RM25<small>barakallahu fik, jazakallah 💜</small></button>
-        <button class="amount-btn gold-btn" onclick="selectAmount('custom', this)">Seikhlas hati 💛<small>Allah Maha Tahu niat baik awak</small></button>
+      <div class="amount-grid" style="grid-template-columns:1fr;">
+        <button class="amount-btn pkg-btn" onclick="selectAmount(15, this, 'Lifetime HookCraft v2 &amp; Affisnap v1')">
+          <div class="pkg-top"><span class="pkg-price">RM15</span><span class="pkg-tag">Lifetime</span></div>
+          <div class="pkg-name">HookCraft v2 &amp; Affisnap v1</div>
+          <small>moga dimurahkan rezeki awak 🤲</small>
+        </button>
+        <button class="amount-btn pkg-btn" onclick="selectAmount(20, this, 'Lifetime HookCraft v2 &amp; Affisnap v1 + Bonus 10 Credits')">
+          <div class="pkg-top"><span class="pkg-price">RM20</span><span class="pkg-tag pkg-tag--blue">Lifetime + Bonus</span></div>
+          <div class="pkg-name">HookCraft v2 &amp; Affisnap v1 + Bonus 10 Credits</div>
+          <small>semoga dipermudahkan urusan 🌿</small>
+        </button>
+        <button class="amount-btn pkg-btn" onclick="selectAmount(25, this, 'Lifetime HookCraft v2 &amp; Affisnap v1 + Bonus 15 Credits')">
+          <div class="pkg-top"><span class="pkg-price">RM25</span><span class="pkg-tag pkg-tag--purple">Lifetime + Bonus</span></div>
+          <div class="pkg-name">HookCraft v2 &amp; Affisnap v1 + Bonus 15 Credits</div>
+          <small>barakallahu fik, jazakallah 💜</small>
+        </button>
+        <button class="amount-btn pkg-btn" onclick="selectAmount(30, this, 'Lifetime HookCraft v2 &amp; Affisnap v1 + Bonus 20 Credits')">
+          <div class="pkg-top"><span class="pkg-price">RM30</span><span class="pkg-tag pkg-tag--green">Lifetime + Bonus</span></div>
+          <div class="pkg-name">HookCraft v2 &amp; Affisnap v1 + Bonus 20 Credits</div>
+          <small>semoga Allah sentiasa permudahkan urusan awak 🌸</small>
+        </button>
+        <button class="amount-btn gold-btn pkg-btn" onclick="selectAmount('custom', this, 'Custom — Bonus Extra Credits')">
+          <div class="pkg-top"><span class="pkg-price">Custom 💛</span><span class="pkg-tag pkg-tag--gold">Seikhlas Hati</span></div>
+          <div class="pkg-name">Bayar lebih, dapat bonus extra credits</div>
+          <small>Allah Maha Tahu niat baik awak ✨</small>
+        </button>
       </div>
 
       <div class="custom-amount-wrap" id="customWrap">
@@ -687,8 +874,20 @@
       <div class="err" id="err-amount" style="margin-top:4px;">Sila pilih jumlah bayaran terlebih dahulu.</div>
 
       <button class="btn-next disabled" id="btnNext" onclick="goToPage2()">
-        Seterusnya &nbsp;→
+        Bayar via QR / Bank &nbsp;→
       </button>
+
+      <div class="pay-divider">
+        <span>atau</span>
+      </div>
+
+      <a id="btnTelegram" href="https://t.me/revvedupmedia_bot" target="_blank" class="btn-telegram-main btn-tg-disabled" onclick="handleTgClick(event)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.704l-1.694 7.985c-.126.56-.457.697-.925.433l-2.55-1.88-1.232 1.188c-.136.136-.25.25-.513.25l.184-2.594 4.727-4.27c.206-.183-.044-.285-.318-.102L7.49 14.58l-2.513-.786c-.546-.17-.557-.546.114-.807l9.808-3.784c.455-.164.853.1.031.501z" fill="white"/>
+        </svg>
+        Beli Terus via Telegram Bot
+      </a>
+      <p class="cta-note-tg" id="ctaNoteTg">Pilih pakej dahulu untuk guna Telegram bot</p>
 
     </div>
   </div>
@@ -717,7 +916,10 @@
       </div>
 
       <div class="amount-summary">
-        <div class="amount-summary-label">Jumlah dipilih</div>
+        <div>
+          <div class="amount-summary-label">Pakej dipilih</div>
+          <div style="font-size:12px;color:#b8a8ff;margin-top:3px;" id="summaryPkg">—</div>
+        </div>
         <div class="amount-summary-val" id="summaryAmt">—</div>
       </div>
 
@@ -792,7 +994,7 @@
         </div>
       </div>
 
-      <!-- 4: WhatsApp -->
+      <!-- 4: Hantar Bukti & Dapatkan Akses -->
       <div style="margin-top:8px;">
         <a id="waBtn" href="#" class="btn-whatsapp btn-disabled" onclick="handleWA(event)">
           <svg class="wa-icon" viewBox="0 0 32 32" fill="none">
@@ -805,6 +1007,21 @@
         <p class="cta-note" id="ctaNote">Lengkapkan maklumat di atas dahulu</p>
       </div>
 
+      <!-- 5: Telegram Bot Info -->
+      <div class="tg-info-card" id="tgInfoCard" style="display:none;">
+        <div class="tg-info-icon">✦</div>
+        <div class="tg-info-body">
+          <div class="tg-info-title">Dapatkan Akses Segera via Telegram Bot</div>
+          <div class="tg-info-desc">Selepas bayaran disahkan, tekan butang di bawah untuk buka bot Telegram kami. Bot akan aktifkan akses lifetime awak secara automatik.</div>
+        </div>
+        <a href="https://t.me/revvedupmedia_bot" target="_blank" class="btn-telegram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.93 6.704l-1.694 7.985c-.126.56-.457.697-.925.433l-2.55-1.88-1.232 1.188c-.136.136-.25.25-.513.25l.184-2.594 4.727-4.27c.206-.183-.044-.285-.318-.102L7.49 14.58l-2.513-.786c-.546-.17-.557-.546.114-.807l9.808-3.784c.455-.164.853.1.031.501z" fill="white"/>
+          </svg>
+          Buka @revvedupmedia_bot
+        </a>
+      </div>
+
     </div>
   </div>
 </div>
@@ -813,30 +1030,51 @@
 
 <script>
   let selectedAmount = null;
+  let selectedPkg = null;
   let isCustom = false;
 
-  function selectAmount(val, btn) {
+  function selectAmount(val, btn, pkgName) {
     document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
     if (val === 'custom') {
       isCustom = true;
       selectedAmount = null;
+      selectedPkg = pkgName;
       document.getElementById('customWrap').classList.add('show');
       setTimeout(() => document.getElementById('customAmount').focus(), 80);
     } else {
       isCustom = false;
       selectedAmount = val;
+      selectedPkg = pkgName;
       document.getElementById('customWrap').classList.remove('show');
       document.getElementById('customAmount').value = '';
     }
     document.getElementById('err-amount').style.display = 'none';
     updateNextBtn();
+    updateTgBtn();
+  }
+
+  function updateTgBtn() {
+    const ok = selectedAmount && selectedAmount > 0;
+    const tgBtn = document.getElementById('btnTelegram');
+    const tgNote = document.getElementById('ctaNoteTg');
+    tgBtn.classList.toggle('btn-tg-disabled', !ok);
+    tgNote.style.opacity = ok ? '0' : '1';
+  }
+
+  function handleTgClick(e) {
+    if (!selectedAmount || selectedAmount <= 0) {
+      e.preventDefault();
+      document.getElementById('err-amount').style.display = 'block';
+    }
+    // else let href open naturally
   }
 
   function updateCustomAmount() {
     const v = parseFloat(document.getElementById('customAmount').value);
     selectedAmount = v > 0 ? v : null;
     updateNextBtn();
+    updateTgBtn();
   }
 
   function updateNextBtn() {
@@ -850,6 +1088,9 @@
       return;
     }
     document.getElementById('summaryAmt').textContent = 'RM' + selectedAmount;
+    // Show package name without HTML entities
+    const pkgText = selectedPkg ? selectedPkg.replace(/&amp;/g, '&') : '—';
+    document.getElementById('summaryPkg').textContent = pkgText;
     document.getElementById('page1').classList.remove('active');
     document.getElementById('page2').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -891,8 +1132,12 @@
     if (!hp) { show('err-hp'); err('hp'); valid = false; }
     if (!valid) return;
     const jumlah = 'RM' + selectedAmount;
-    const msg = `Salam/Hai! Saya ${nama}, dah buat bayaran ${jumlah} untuk dapatkan akses HookCraft & Affisnap. Email saya ${email} dan no phone ${hp}. Terima kasih!`;
+    const pkg = selectedPkg ? selectedPkg.replace(/&amp;/g, '&') : '';
+    const msg = `Salam/Hai! Saya ${nama}, dah buat bayaran ${jumlah} untuk pakej ${pkg}. Email saya ${email} dan no phone ${hp}. Terima kasih!`;
     window.open('https://wa.me/601111071083?text=' + encodeURIComponent(msg), '_blank');
+    // Show Telegram card after sending
+    document.getElementById('tgInfoCard').style.display = 'block';
+    document.getElementById('tgInfoCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   function show(id) { document.getElementById(id).style.display = 'block'; }
