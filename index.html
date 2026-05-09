@@ -777,6 +777,112 @@
 
   .btn-telegram:active { transform: scale(0.98); }
 
+
+  /* ── FAQ ── */
+  .btn-faq {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 24px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-faq:hover { border-color: var(--accent); color: var(--text); }
+
+  .faq-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    padding: 20px;
+    overflow-y: auto;
+    backdrop-filter: blur(4px);
+  }
+  .faq-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+
+  .faq-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .faq-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .faq-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+  }
+
+  .faq-close {
+    background: rgba(255,255,255,0.08);
+    border: none;
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+    color: var(--muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .faq-close:hover { color: var(--text); }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+  }
+  .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .faq-q {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .faq-q::before { content: "Q"; color: var(--accent); flex-shrink: 0; }
+
+  .faq-a {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    padding-left: 22px;
+  }
+
+  .faq-badge {
+    display: inline-block;
+    background: rgba(61,214,140,0.12);
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
   /* ── TOAST ── */
   .toast {
     position: fixed;
@@ -901,6 +1007,10 @@
         Beli Terus via Telegram Bot
       </a>
       <p class="cta-note-tg" id="ctaNoteTg">Pilih pakej dahulu untuk guna Telegram bot</p>
+
+      <div style="text-align:center; margin-top:20px;">
+        <button onclick="openFAQ()" class="btn-faq">❓ Soalan Lazim (FAQ)</button>
+      </div>
 
     </div>
   </div>
@@ -1175,6 +1285,60 @@
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2500);
   }
+
+  function openFAQ() {
+    document.getElementById('faqOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeFAQ() {
+    document.getElementById('faqOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeFAQOutside(e) {
+    if (e.target === document.getElementById('faqOverlay')) closeFAQ();
+  }
+
 </script>
+
+  <!-- ════ FAQ OVERLAY ════ -->
+  <div class="faq-overlay" id="faqOverlay" onclick="closeFAQOutside(event)">
+    <div class="faq-box" id="faqBox">
+      <div class="faq-header">
+        <div class="faq-title">❓ Soalan Lazim</div>
+        <button class="faq-close" onclick="closeFAQ()">✕</button>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Lifetime ke? <span class="faq-badge">✓ Ya</span></div>
+        <div class="faq-a">Ya, lifetime untuk apps <strong>HookCraft v2</strong> dan <strong>AffiSnap v1</strong>. Bayar sekali, guna selamanya.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Ada subscription tak?</div>
+        <div class="faq-a">Tiada langsung. Tak ada yuran bulanan atau tahunan untuk akses kedua-dua apps ni. Sekali bayar, selesai.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Apa perbezaan harga RM15, RM20, RM25, RM30?</div>
+        <div class="faq-a">Tak ada beza dari segi akses — sumbang apa yang korang mampu. Ada custom lagi tu hehe. Tapi admin akan bagi <strong>bonus</strong> berdasarkan berapa korang bayar 😉</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Bila akses diaktifkan?</div>
+        <div class="faq-a">Selepas bukti bayaran disahkan oleh admin, akses akan terus diaktifkan. Biasanya dalam masa <strong>beberapa minit hingga 1 jam</strong>.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Cara nak guna apps ni?</div>
+        <div class="faq-a">Selepas bayaran disahkan, admin akan guide korang. Boleh juga hubungi terus melalui bot Telegram kami untuk panduan lanjut.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Ada refund tak?</div>
+        <div class="faq-a">Memandangkan ini adalah produk digital dan akses terus diberikan selepas pengesahan, refund tidak ditawarkan. Tapi boleh tanya dulu sebelum beli! 😊</div>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>
