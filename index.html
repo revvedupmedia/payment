@@ -41,6 +41,7 @@
     background: radial-gradient(ellipse, rgba(124,92,252,0.18) 0%, rgba(252,92,248,0.08) 40%, transparent 70%);
     pointer-events: none;
     z-index: 0;
+    animation: glowPulse 8s ease-in-out infinite;
   }
 
   body::after {
@@ -51,6 +52,88 @@
     pointer-events: none;
     z-index: 0;
     opacity: 0.4;
+  }
+
+  /* ── BACKGROUND ANIMATIONS ── */
+  @keyframes glowPulse {
+    0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.6; transform: translateX(-50%) scale(1.15); }
+  }
+
+  @keyframes orbFloat1 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+    33% { transform: translate(40px, -60px) scale(1.1); opacity: 0.7; }
+    66% { transform: translate(-30px, 30px) scale(0.95); opacity: 0.5; }
+  }
+
+  @keyframes orbFloat2 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+    40% { transform: translate(-50px, 40px) scale(1.08); opacity: 0.6; }
+    70% { transform: translate(25px, -50px) scale(0.9); opacity: 0.4; }
+  }
+
+  @keyframes orbFloat3 {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+    50% { transform: translate(30px, 50px) scale(1.12); opacity: 0.5; }
+  }
+
+  @keyframes starTwinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  .bg-orb {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(80px);
+  }
+
+  .bg-orb-1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(124,92,252,0.12) 0%, transparent 70%);
+    bottom: 10%;
+    left: -10%;
+    animation: orbFloat1 12s ease-in-out infinite;
+  }
+
+  .bg-orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(252,92,248,0.10) 0%, transparent 70%);
+    bottom: 30%;
+    right: -8%;
+    animation: orbFloat2 15s ease-in-out infinite;
+  }
+
+  .bg-orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(61,214,140,0.07) 0%, transparent 70%);
+    top: 40%;
+    left: 30%;
+    animation: orbFloat3 18s ease-in-out infinite;
+  }
+
+  .bg-stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: starTwinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    opacity: 0;
   }
 
   .page-wrap { position: relative; z-index: 1; }
@@ -911,6 +994,12 @@
 </head>
 <body>
 
+<!-- Background orbs -->
+<div class="bg-orb bg-orb-1"></div>
+<div class="bg-orb bg-orb-2"></div>
+<div class="bg-orb bg-orb-3"></div>
+<div class="bg-stars" id="bgStars"></div>
+
 <div class="page-wrap">
 
   <!-- ════════════════════════════
@@ -1255,7 +1344,7 @@
     if (!hp) { show('err-hp'); err('hp'); valid = false; }
     if (!valid) return;
     const jumlah = 'RM' + selectedAmount;
-    const pkg = selectedPkg ? selectedPkg.replace(/&amp;/g, '&') : '';
+    const pkg = isCustom ? 'HookCraft & AffiSnap Lifetime' : (selectedPkg ? selectedPkg.replace(/&amp;/g, '&') : '');
     const msg = `Salam/Hai! Saya ${nama}, dah buat bayaran ${jumlah} untuk pakej ${pkg}. Email saya ${email} dan no phone ${hp}. Terima kasih!`;
     window.open('https://wa.me/601111071083?text=' + encodeURIComponent(msg), '_blank');
     // Show Telegram card after sending
@@ -1285,6 +1374,27 @@
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2500);
   }
+
+  // Generate twinkling stars
+  (function() {
+    const container = document.getElementById('bgStars');
+    const count = 55;
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('div');
+      star.className = 'bg-star';
+      const size = Math.random() < 0.3 ? 3 : 2;
+      star.style.cssText = `
+        left: ${Math.random() * 100}%;
+        top: ${Math.random() * 100}%;
+        width: ${size}px;
+        height: ${size}px;
+        --dur: ${(Math.random() * 4 + 2).toFixed(1)}s;
+        --delay: ${(Math.random() * 6).toFixed(1)}s;
+        opacity: 0;
+      `;
+      container.appendChild(star);
+    }
+  })();
 
   function openFAQ() {
     document.getElementById('faqOverlay').classList.add('open');
